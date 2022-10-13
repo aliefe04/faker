@@ -51,10 +51,10 @@ class Provider(AddressProvider):
     postcode_pattern: str = "LNN AAAA"
 
     def postcode(self) -> str:
-        postcode = ""
-        for placeholder in self.postcode_pattern:
-            postcode += self.random_element(self._postcode_sets[placeholder])
-        return postcode
+        return "".join(
+            self.random_element(self._postcode_sets[placeholder])
+            for placeholder in self.postcode_pattern
+        )
 
     def administrative_unit(self, min_length: Optional[int] = None, max_length: Optional[int] = None) -> str:
         return self.random_element(self.counties, min_length, max_length)

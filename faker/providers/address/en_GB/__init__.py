@@ -533,11 +533,11 @@ class Provider(AddressProvider):
         See
         http://web.archive.org/web/20090930140939/http://www.govtalk.gov.uk/gdsc/html/noframes/PostCode-2-1-Release.htm
         """
-        postcode = ""
         pattern: str = self.random_element(self.postcode_formats)
-        for placeholder in pattern:
-            postcode += self.random_element(self._postcode_sets[placeholder])
-        return postcode
+        return "".join(
+            self.random_element(self._postcode_sets[placeholder])
+            for placeholder in pattern
+        )
 
     def city_prefix(self, min_length: Optional[int] = None, max_length: Optional[int] = None) -> str:
         return self.random_element(self.city_prefixes, min_length, max_length)
