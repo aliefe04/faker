@@ -2246,7 +2246,7 @@ class Provider(AddressProvider):
     def street_title(self) -> str:
         prefix = self.street_prefix()
         street = self.street_name()
-        return prefix + " " + street
+        return f"{prefix} {street}"
 
     def region(self, min_length: Optional[int] = None, max_length: Optional[int] = None) -> str:
         return self.random_element(self.region_names, min_length, max_length)
